@@ -1,0 +1,50 @@
+.login_cointainer{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+       
+    
+    img{
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        z-index: 50;
+        overflow: hidden;
+    }
+    div{
+        
+        form{
+            position: relative;
+            z-index: 100;
+            height: 200px;
+            width: 300px;
+            border: 1px black solid;
+            background-color: #50C878;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            h5{
+                display: inline-block;    
+            }
+            button{
+                width: 60px;
+            }
+            div{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+.errorMsg{
+    color:red
+}

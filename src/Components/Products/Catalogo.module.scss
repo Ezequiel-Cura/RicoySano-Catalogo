@@ -1,0 +1,17 @@
+.product_cointainer{
+    margin: 0 20%;
+    margin-bottom: 50px;
+    justify-items: center;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    div{
+        display: flex;
+        flex-direction: column;
+        img{
+            height: 300px;
+            width: 300px;
+            object-fit: cover;
+        }
+    }
+}
