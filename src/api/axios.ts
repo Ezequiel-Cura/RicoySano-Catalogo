@@ -3,6 +3,7 @@ import { AxiosRequestConfig } from "axios";
 import { refreshToken } from "./UserActions";
 const privAxios = axios.create({
     baseURL: import.meta.env.VITE_BACK_URL,
+    headers:{'Content-Type': 'application/json'},
     withCredentials:true
 })
 

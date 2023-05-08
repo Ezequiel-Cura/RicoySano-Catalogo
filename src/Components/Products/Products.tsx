@@ -1,26 +1,40 @@
 import { useQuery } from '@tanstack/react-query'
-import { getProductsQuery } from "../../api/productsActions"
+// import { getProductsQuery } from "../../api/productsActions"
 import { IProduct } from '../../assets/Types/Types'
 import {Image} from "cloudinary-react"
-import styles from "./Catalogo.module.scss"
+import styles from "./Products.module.scss"
 import { useProductsStore } from '../../store/productsStore'
-
+import privAxios from '../../api/axios'
+import { useEffect } from 'react'
 
 export default function Products() {
-  const products = useProductsStore((state)=>state.products)
+  const {products,getProducts} = useProductsStore((state)=>state)
 
 
-  const {isLoading,data,isError,error} = useQuery({
-    queryKey:["products"],
-    queryFn: getProductsQuery
-  })
-  if(isLoading) return <div>Loading</div>
-  else if(isError) return <div>Error </div>
+  useEffect(()=>{
+    if(!products.length){
+      getProducts()
+    }
+  },[])
+
+  // const {isLoading,data,isError,error} = useQuery({
+  //   queryKey:["products"],
+  //   queryFn: async()=>{
+  //     // const res = await privAxios.get("/products")
+  //     if(!products.length){
+  //       getProducts()
+  //     }
+    
+  //   }
+  // })
+
+  // if(isLoading) return <div>Loading</div>
+  // else if(isError) return <div>Error </div>
 
   return (
     <div className={styles.product_cointainer}>
      {
-       data.products.length > 1 ? data.products.map((p:IProduct,i:number)=>(
+       products.length > 1 ? products.map((p:any,i:number)=>(
          <div key={i}>
            <Image cloudName={`${import.meta.env.VITE_CLOUD_NAME}`}
             publicId={p.product_image}>

@@ -3,7 +3,8 @@ import privAxios from "./axios";
 
 
 export const getProductsQuery =async () => {
-    const res = await privAxios.get("/products")
+    console.log("Hola")
+    const res = await privAxios.get("/Products")
     console.log(res.data)
     return res.data
 }

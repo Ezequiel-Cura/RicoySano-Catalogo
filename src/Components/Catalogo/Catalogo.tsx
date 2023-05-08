@@ -10,6 +10,9 @@ export default function Catalogo() {
       <div>
         <Products/>
       </div>
+      <div >
+
+      </div>
     </div>
   )
 }

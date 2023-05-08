@@ -6,30 +6,27 @@ import {useMutation,useQuery} from "@tanstack/react-query"
 import { Iuser } from '../../api/UserActions'
 import {Formik, Form,Field,ErrorMessage} from "formik"
 import * as yup from "yup"
+import { useUserStore } from '../../store/userStore'
+import { Navigate } from 'react-router-dom'
 
 export default function Login() {
-
+  const {login,isAuth} = useUserStore(state=>state)
   const loginSchema = yup.object().shape({
     email: yup.string().email("Ese email no existe").required("Tu email es requerido"),
     password: yup.string().min(5,"Too short").required("Password required")
   })
 
-  const loginUserMutation = useMutation({
-    mutationKey:["user"],
-    mutationFn:loginUser
-  })
+  
 
   const handleSubmit = async (values:Iuser,submitProps:any)=>{
     console.log(values)
     // const formData = new FormData(e.currentTarget)
     // const user:any = Object.fromEntries(formData) 
-    loginUserMutation.mutate(values)
-    
-      
-  
-    
+    login(values)     
+    console.log("llegue")
+    return (<Navigate to="/dashboard" replace={true} />)
   }
-
+  if(isAuth)return (<Navigate to="/dashboard" replace={true} />)
 
   return (
     <div className={styles.login_cointainer}>

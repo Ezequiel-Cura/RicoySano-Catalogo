@@ -1,0 +1,36 @@
+.createProduct_cointainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .div_form_wrapper{
+        border: 1px black solid;
+        width: 90%;
+        padding: 20px;
+        .firstForm_section{
+            display: flex;
+            padding: 10px;
+            div{
+                padding: 10px;
+            }
+        }
+        .secondForm_section{
+            display: flex;
+            div{
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                
+            }
+        }
+        .img_wrapper{
+            
+            div{
+                img{
+                    height: 300px;
+                    width: 300px;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}

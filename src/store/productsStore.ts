@@ -1,10 +1,12 @@
 import {create} from "zustand"
-import {devtools} from "zustand/middleware"
+import {devtools,persist} from "zustand/middleware"
 import privAxios from "../api/axios"
 
 interface InitialState{
     products: IProducts[]
-    getProducts:(data:IProducts[])=>void
+    getProducts:()=>void
+    deleteProducts:(id:string)=>void
+    createProduct:(obj:IProducts)=>void
 }
 
 interface IProducts{    
@@ -16,14 +18,27 @@ interface IProducts{
     presentation:string    
 }
 
-export const useProductsStore = create<InitialState>((set,get)=>({
+export const useProductsStore = create(persist<InitialState>((set,get)=>({
     products:[],
-    getProducts:async(data:IProducts[])=>{
-        //pedido a la api
-        // const {data} = await privAxios.get("/products")
+    getProducts:async()=>{
+        // pedido a la api
+        console.log("Hola")
+        const {data} = await privAxios.get("/Products")
         set(state=>({
-            ...state,
-            products: data
+            
+            products: data.products
         }))
+    },
+    deleteProducts:async(id:string)=>{
+        const {data} = await privAxios.delete("/Product/"+id)
+    },
+    createProduct:async(obj:IProducts)=>{
+        const {data} = await privAxios.post("/Product",obj,{     
+                 headers: { 'content-type': 'multipart/form-data' },
+                 withCredentials:true
+            }
+        )
     }
+}),{
+    name:"products"
 }))

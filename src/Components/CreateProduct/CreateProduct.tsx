@@ -1,12 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
+import styles from "./CreateProduct.module.scss"
+import { useProductsStore } from '../../store/productsStore'
 
 export default function CreateProduct() {
+  const {createProduct} = useProductsStore(state=>state)
   const [imagePrev,setImagePrev]:any = useState()
-
+  const [categories,setCategories] = useState<Array<string>>()
+  const [variants,setVariants] = useState<Array<string>>()
+  const inputCategories:any = useRef("")
+  const inputVariants:any = useRef("")
 
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
-    
+    const formData = new FormData(e.currentTarget)
+    const product:any = Object.fromEntries(formData) 
+    product.categories = categories
+    product.variants = variants
+    product.categories_string = JSON.stringify(categories)
+    console.log(product)
+    createProduct(product)
   }
 
 
@@ -19,29 +31,83 @@ export default function CreateProduct() {
     };
     
   } 
+
+  const handleAddCategories = ()=>{
+    setCategories([...categories || [],inputCategories.current.value])
+    inputCategories.current.value = ""
+    console.log()
+  }
+
+  const handleAddVariants = ()=>{
+    setVariants([...variants || [],inputVariants.current.value])
+    inputVariants.current.value = ""
+  }
+
+
   return (
-    <div>
+    <div className={styles.createProduct_cointainer}>
       <h4>Create your Product</h4>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="">Nombre</label>
-          <input type="text" name='name'/>
+      <div className={styles.div_form_wrapper}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <div className={styles.firstForm_section}>
+            <div>
+              <label htmlFor="">Nombre</label>
+              <input type="text" name='name'/>
+            </div>
 
-          <label htmlFor="">Presentacion</label>
-          <input type="text" name='presentation'/>
+            <div>
+              <label htmlFor="">Presentacion</label>
+              <input type="text" name='presentation'/>
+            </div>
 
-          <label htmlFor="">Categorias</label>
-          <input type="text" name='categories'/>
+            <div>
+              <label htmlFor="">Precio</label>
+              <input type="number" />
+            </div>
+          </div>
 
-          <label htmlFor=""></label>
-          <input type="text" />
+          <div className={styles.secondForm_section}>
+            <div>
+              <label htmlFor="">Categorias</label>
+              <input type="text" name='categories' ref={inputCategories}/>
+              <button onClick={handleAddCategories}>add</button>
+              <div>
+                {
+                  categories?.length ? categories.map((cate:string,i:number)=>(
+                    <div key={i}>{cate} </div>
+                  ))
+                  :null
+                }
+              </div>
+            </div>
 
-          <label>Image: </label>
-          <input 
-            type="file" 
-            name="product_image" 
-            onChange={(e)=>previewSource(e.target.files)}
-          />
+            <div>
+              <label htmlFor="">Variantes</label>
+              <input type="text" name='variants' ref={inputVariants}/>
+              <button onClick={handleAddVariants}>add</button>
+              <div>
+              {
+                  variants?.length ? variants.map((vari:string,i:number)=>(
+                    <div key={i}>{vari} </div>
+                  ))
+                  :null
+                }
+              </div>
+            </div>
+          </div>
+          
+
+          <div className={styles.img_wrapper}>
+            <label>Image: </label>
+            <input 
+              type="file" 
+              name="product_image" 
+              onChange={(e)=>previewSource(e.target.files)}
+            />
+            <div>
+             {imagePrev ? <img src={imagePrev} alt="img" className={styles.preview_img} /> : null}
+            </div>
+          </div>
 
           <button type='submit'>Add Product</button>
 

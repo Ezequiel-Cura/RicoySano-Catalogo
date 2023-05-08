@@ -10,10 +10,10 @@ import Login from './Components/LogIn/Login'
 import CreateProduct from './Components/CreateProduct/CreateProduct'
 import Dashboard from './Components/Dashboard/Dashboard'
 import PageNotFound from './Components/PageNotFound/PageNotFound'
-
+import Footer from './Components/Footer/Footer'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <BrowserRouter>
@@ -28,6 +28,7 @@ function App() {
         </Route>
         <Route path='*' element={<PageNotFound/>}/>
       </Routes>
+      {/* <Footer/> */}
     </BrowserRouter>
   )
 }

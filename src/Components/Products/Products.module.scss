@@ -1,10 +1,10 @@
 .product_cointainer{
-    margin: 0 20%;
-    margin-bottom: 50px;
+    margin: 0 10% 0 10%;
+    padding-bottom: 200px;
     justify-items: center;
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));    
     div{
         display: flex;
         flex-direction: column;
