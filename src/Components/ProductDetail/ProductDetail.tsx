@@ -15,34 +15,37 @@ export default function ProductDetail() {
         getSingleProduct(id as string)
     },[])
   return (
-    <div>
-         <h1>{singleProduct?.name}</h1>
-        <div className={styles.detail_properties}>
-          <div className={styles.image_wrapper}>
-            <Image
-              cloudName={`${import.meta.env.VITE_CLOUD_NAME}`}
-              publicId={singleProduct.product_image}>
-            </Image>
-          </div>
-          <div className={styles.properties}>
-            <div>
-              <span>Presentacion: </span>
-              <span>{singleProduct.presentation}</span>
-            </div>        
-                      
-            <div>
-              <span>Categorias: </span>
-              <span>{singleProduct.categories.join(" - ")}</span>
-            </div>           
+    <div className={styles.detail_page}>
+        <h1>{singleProduct?.name}</h1>
+        <div className={styles.detail_cointainer}>
+            <div className={styles.detail_properties}>
 
-            <div>
-              <span>Variantes: </span>
-              <span>{singleProduct.variants.join(" - ")}</span>
+                <div className={styles.image_wrapper}>
+                    <Image
+                    cloudName={`${import.meta.env.VITE_CLOUD_NAME}`}
+                    publicId={singleProduct.product_image}>
+                    </Image>
+                </div>
+
+                <div className={styles.properties}>
+                    <div>
+                        <span>Presentacion: </span>
+                        <span>{singleProduct.presentation}</span>
+                    </div>        
+                            
+                    <div>
+                        <span>Categorias: </span>
+                        <span>{singleProduct.categories.join(" - ")}</span>
+                    </div>           
+
+                    <div>
+                        <span>Variantes: </span>
+                        <span>{singleProduct.variants.join(" - ")}</span>
+                    </div>                    
+                    
+                </div>
+
             </div>
-            
-            <span></span>
-            <span></span>
-          </div>
         </div>
     </div>
   )

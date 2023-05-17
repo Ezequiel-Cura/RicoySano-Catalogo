@@ -13,6 +13,7 @@ export default function Products() {
 
   useEffect(()=>{
     if(!products.length){
+      console.log("hola")
       getProducts()
     }
   },[])

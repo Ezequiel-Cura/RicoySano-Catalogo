@@ -1,0 +1,27 @@
+.detail_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .detail_cointainer{
+        
+        width: fit-content;
+        height: fit-content;
+        border-radius: 30px;
+        background: #e0e0e0;
+        box-shadow: 15px 15px 30px #bebebe,
+                    -15px -15px 30px #ffffff;
+        .detail_properties{
+            .image_wrapper{
+                img{
+                    max-width: 500px;
+                    max-height: 500px;
+                }
+            }
+            .properties{
+                padding: 7px;
+            }
+        }
+         
+    }
+}

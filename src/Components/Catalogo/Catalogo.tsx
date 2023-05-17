@@ -8,7 +8,9 @@ export default function Catalogo() {
   let [categories,setCategories] = useState(Array<string>)
 
   useEffect(()=>{
-    getProducts()
+    if(!products.length){
+      getProducts()
+    }
     getCategories()
   },[])
 
