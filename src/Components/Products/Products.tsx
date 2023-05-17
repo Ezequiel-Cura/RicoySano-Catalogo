@@ -34,7 +34,7 @@ export default function Products() {
   return (
     <div className={styles.product_cointainer}>
      {
-       products.length > 1 ? products.map((p:any,i:number)=>(
+       products.length > 0 ? products.map((p:any,i:number)=>(
          <div key={i}>
            <Image cloudName={`${import.meta.env.VITE_CLOUD_NAME}`}
             publicId={p.product_image}>
