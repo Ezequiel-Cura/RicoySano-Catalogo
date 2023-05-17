@@ -42,7 +42,7 @@ export default function Products() {
             <span>{p.name} </span>
          </div>
        ))
-        : <div>Products no found</div>
+        : <div>Productos no encontrados</div>
      }
       
     </div>

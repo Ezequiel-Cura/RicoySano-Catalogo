@@ -3,6 +3,8 @@ import {useParams} from "react-router-dom"
 import {Image} from "cloudinary-react"
 import { useProductsStore } from "../../store/productsStore"
 import styles from "./ProductDetail.module.scss"
+import { string } from 'yup'
+
 
 
 export default function ProductDetail() {
@@ -10,7 +12,7 @@ export default function ProductDetail() {
     const {singleProduct,getSingleProduct} = useProductsStore(state=>state)  
 
     useEffect(()=>{
-        getSingleProduct(id)
+        getSingleProduct(id as string)
     },[])
   return (
     <div>

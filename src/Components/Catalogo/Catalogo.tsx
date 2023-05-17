@@ -49,45 +49,50 @@ export default function Catalogo() {
   }
 
   return (
-    <div className={styles.catalogo_Cointainer} >
-      <h4 className={styles.title}>Catalogo</h4>
-      <div>
+    <div className={styles.catalogo_Cointainer} >      
+      <div className={styles.filter_cointainer}>
         <h5>Filtros</h5>
-        <div className={styles.filter_cointainer}>
-               <div className={styles.filter_items}>Categorias</div>
-        <select name="Category"  className={styles.filter_items} onChange={(e:any)=>{
-          handleCategory(e)
-          // HACER QUE CUANDO CAMBIA LA CATEGORIA EL ORDEN Z-A SE RESETIE
-          }}>
-          <option value="default">Todas</option>
-          {
-            categories?.length > 0 ?  categories?.map(c=>(
-              <option value={c} key={c}>{c}</option>
-            ))
-            :null
-          }
-          
-        </select>
-          
-                 <div className={styles.filter_items}>A-Z</div>
-        <select name="Alphabety" id="" className={styles.filter_items} onChange={(e:any)=>handleChangeAZ(e)}>
-          <option value="default">order</option>
-          <option value="A-Z">A-Z</option>
-          <option value="Z-A">Z-A</option>
-        </select>
+        <div className={styles.filter_wrapper}>
 
-        <div>
-          <span>Búsqueda:</span>
-          <input type="text" onChange={(e)=>{
-              handleSearch(e)
-              
-            }}/>
+          <div className={styles.filter_items}>
+            <span>Categorias: </span>
+            <select name="Category"  onChange={(e:any)=>{
+              handleCategory(e)
+              // HACER QUE CUANDO CAMBIA LA CATEGORIA EL ORDEN Z-A SE RESETIE
+              }}>
+              <option value="default">Todas</option>
+              {
+                categories?.length > 0 ?  categories?.map(c=>(
+                  <option value={c} key={c}>{c}</option>
+                ))
+                :null
+              }              
+            </select>
+          </div>
+        
+          <div className={styles.filter_items}>
+            <span>Orden: </span>
+            <select name="Alphabety" id=""  onChange={(e:any)=>handleChangeAZ(e)}>
+              <option value="default">Orden</option>
+              <option value="A-Z">A-Z</option>
+              <option value="Z-A">Z-A</option>
+            </select>
+          </div>       
+          <div className={styles.filter_items}>
+            <span>Búsqueda:</span>
+            <input type="text" onChange={(e)=>{
+                handleSearch(e)                  
+              }}/>
+          </div>        
         </div>
+          
+                      
       </div>
-      </div>
+
       <div>
         <Products/>
       </div>
+
       <div >
 
       </div>

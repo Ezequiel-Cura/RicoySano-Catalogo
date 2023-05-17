@@ -3,11 +3,24 @@ $base-color: blue;
 .catalogo_Cointainer {
     height: 100vh;
     width: 100%;
-    
-    h4{
-        
+    display: flex;
+    flex-direction: column;
+    .title{
+
     }
-    div{
-        
+    .filter_cointainer{
+        padding: 10px;
+        margin: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .filter_wrapper{
+            display: flex;
+            flex-direction: row;
+            .filter_items{
+                padding: 5px;
+            }
+        }
     }
 }
