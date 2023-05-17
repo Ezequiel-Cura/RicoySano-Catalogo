@@ -5,12 +5,14 @@ import privAxios from "../api/axios"
 interface InitialState{
     products: IProducts[]
     originalProdcuts:IProducts[]
+    singleProduct:IProducts
     getProducts:()=>void
     deleteProducts:(id:string)=>void
     createProduct:(obj:IProducts)=>void
     orderByCategory:(category:string)=>void
     orderByAZ:(order:string)=>void
     searchProduct:(str:string)=>void
+    getSingleProduct:(id:string)=>void
 }
 
 interface IProducts{    
@@ -25,6 +27,14 @@ interface IProducts{
 export const useProductsStore = create(persist<InitialState>((set,get)=>({
     products:[],
     originalProdcuts:[],
+    singleProduct:{
+        name:"",
+        product_id:"",
+        product_image:"",
+        categories:[],
+        variants:[],
+        presentation:"" 
+    },
     getProducts:async()=>{
         // pedido a la api
         
@@ -86,6 +96,11 @@ export const useProductsStore = create(persist<InitialState>((set,get)=>({
     searchProduct:async(str:string)=>{
         set((state)=>({
             products: state.originalProdcuts.filter(p=>p.name.toLowerCase().includes(str.toLowerCase()))
+        }))
+    },
+    getSingleProduct:async(id:string)=>{
+        set(state=>({
+            singleProduct:state.products.find(p=>p.product_id===id)
         }))
     }
     

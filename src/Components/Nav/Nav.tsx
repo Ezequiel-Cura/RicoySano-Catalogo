@@ -14,11 +14,12 @@ export default function Nav() {
       <h1>Rico y Sano Catalogo</h1>
       <div>
         <div>
-          {
+          { 
             pathname === "/login" || pathname === "/dashboard" ? (
               <Link to="/">Volver</Link>
             )
-            :(
+            : isAuth ? null : (
+
               <Link to="/login">Login</Link>
             )
           }
